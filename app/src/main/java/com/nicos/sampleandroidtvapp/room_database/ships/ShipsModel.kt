@@ -33,7 +33,28 @@ data class ShipsModel(
     var image: String?,
 ) {
 
-    constructor() : this("",  null,null,  null,  null,null,  null,null,  null,null,  null,null,  null,null,  PositionModel(),-1,  null,null, null, null)
+    constructor() : this(
+        "",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        PositionModel(),
+        -1,
+        null,
+        null,
+        null,
+        null
+    )
 
     companion object {
         suspend fun insertTheShips(

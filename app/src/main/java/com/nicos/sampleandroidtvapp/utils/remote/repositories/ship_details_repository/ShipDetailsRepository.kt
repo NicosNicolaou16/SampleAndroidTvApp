@@ -5,7 +5,7 @@ import com.nicos.sampleandroidtvapp.room_database.ships.ShipsModel
 import javax.inject.Inject
 
 class ShipDetailsRepository  @Inject constructor(
-    var myRoomDatabase: MyRoomDatabase
+    private var myRoomDatabase: MyRoomDatabase
 ) {
 
     suspend fun queryShipById(id: String): ShipsModel? {

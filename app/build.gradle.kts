@@ -1,8 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("dagger.hilt.android.plugin")
     id("com.google.devtools.ksp")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -25,7 +26,16 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isShrinkResources = true
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+        debug {
+            isShrinkResources = true
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -66,18 +76,31 @@ val materialDesignVersion by extra("1.10.0")
 val coilVersion by extra("2.5.0")
 val swipeRefreshLayoutVersion by extra("1.1.0")
 val tvComposeVersion by extra("1.0.0-alpha10")
+val composeNavigationVersion by extra("2.7.5")
+val composeHiltNavigationVersion by extra("1.1.0")
+val composeVersion by extra("1.5.4")
+val composeMaterialVersion by extra("1.5.4")
 
 dependencies {
 
     implementation("androidx.core:core-ktx:$coreKtxVersion")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:$swipeRefreshLayoutVersion")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifeCycleAndLiveDataCompilerAndViewModelKTXVersion")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifeCycleAndLiveDataCompilerAndViewModelKTXVersion")
+    //noinspection LifecycleAnnotationProcessorWithJava8
+    kapt("androidx.lifecycle:lifecycle-compiler:$lifeCycleAndLiveDataCompilerAndViewModelKTXVersion")
     implementation("androidx.activity:activity-compose:$activityVersion")
     implementation(platform("androidx.compose:compose-bom:2023.10.01"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+    implementation("androidx.navigation:navigation-compose:$composeNavigationVersion")
+    implementation("androidx.hilt:hilt-navigation-compose:$composeHiltNavigationVersion")
+    implementation("androidx.compose.runtime:runtime-livedata:$composeVersion")
+    implementation("androidx.compose.material:material:$composeMaterialVersion")
+    implementation("androidx.compose.runtime:runtime:$composeVersion")
+    //Android Tv
     implementation("androidx.tv:tv-foundation:$tvComposeVersion")
     implementation("androidx.tv:tv-material:$tvComposeVersion")
     //Room Database
