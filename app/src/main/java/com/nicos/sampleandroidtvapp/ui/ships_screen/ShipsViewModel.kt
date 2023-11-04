@@ -1,12 +1,8 @@
 package com.nicos.sampleandroidtvapp.ui.ships_screen
 
-import android.app.Application
-import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nicos.sampleandroidtvapp.R
-import com.nicos.sampleandroidtvapp.application.SampleAndroidTvApp
 import com.nicos.sampleandroidtvapp.data.ships_data_model.ShipsDataModel
 import com.nicos.sampleandroidtvapp.utils.remote.repositories.ships_repository.ShipsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ShipsViewModel @Inject constructor(application: Application) : AndroidViewModel(application) {
+class ShipsViewModel @Inject constructor() : ViewModel() {
 
     var shipsDataModelStateFlow = MutableStateFlow<MutableList<ShipsDataModel>>(mutableListOf())
     val loading = MutableLiveData<Boolean>()
@@ -44,7 +40,6 @@ class ShipsViewModel @Inject constructor(application: Application) : AndroidView
             .catch { e ->
                 loading.value = false
                 error.value = e.message.toString()
-                //getApplication<SampleAndroidTvApp>().getString(R.string.something_went_wrong)
             }.collect {
                 loading.value = false
                 shipsDataModelStateFlow.value = it
@@ -60,8 +55,7 @@ class ShipsViewModel @Inject constructor(application: Application) : AndroidView
         }.flowOn(Dispatchers.IO)
             .catch { e ->
                 loading.value = false
-                error.value =
-                    getApplication<SampleAndroidTvApp>().getString(R.string.something_went_wrong)
+                error.value = e.message.toString()
             }.collect {
                 loading.value = false
                 shipsDataModelStateFlow.value = it

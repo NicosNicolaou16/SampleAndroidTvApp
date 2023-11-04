@@ -14,7 +14,6 @@ data class ShipsDataModel(var shipsInnerListDataModelList: MutableList<ShipsInne
                         shipsInnerListDataModelList.add(
                             ShipsInnerListDataModel(
                                 shipsModel = it,
-                                isSelect = index == 0
                             )
                         )
                     }
