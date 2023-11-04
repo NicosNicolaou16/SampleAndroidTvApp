@@ -10,8 +10,13 @@ data class ShipsDataModel(var shipsInnerListDataModelList: MutableList<ShipsInne
             return mutableListOf<ShipsDataModel>().apply {
                 (0 until 10).forEach { _ ->
                     val shipsInnerListDataModelList = mutableListOf<ShipsInnerListDataModel>()
-                    shipsModelList.forEach {
-                        shipsInnerListDataModelList.add(ShipsInnerListDataModel(it))
+                    shipsModelList.forEachIndexed { index, it ->
+                        shipsInnerListDataModelList.add(
+                            ShipsInnerListDataModel(
+                                shipsModel = it,
+                                isSelect = index == 0
+                            )
+                        )
                     }
                     add(ShipsDataModel(shipsInnerListDataModelList = shipsInnerListDataModelList))
                 }

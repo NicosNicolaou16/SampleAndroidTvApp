@@ -5,7 +5,10 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -17,6 +20,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.rememberScaffoldState
@@ -24,7 +29,12 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,6 +42,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -40,6 +51,7 @@ import androidx.navigation.NavController
 import androidx.tv.foundation.lazy.list.TvLazyColumn
 import androidx.tv.foundation.lazy.list.TvLazyRow
 import androidx.tv.foundation.lazy.list.items
+import androidx.tv.foundation.lazy.list.itemsIndexed
 import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.tv.material3.ImmersiveList
 import coil.compose.AsyncImage
@@ -60,6 +72,7 @@ internal fun ShipsScreen(navController: NavController) {
     val scaffoldState: ScaffoldState = rememberScaffoldState()
     Scaffold(
         scaffoldState = scaffoldState,
+        backgroundColor = Color.Black,
         topBar = {
             CustomToolbar(R.string.list_of_ships)
         },
@@ -86,7 +99,7 @@ private fun ListOfShips(
         shipsViewModel.shipsDataModelStateFlow.collectAsState(initial = mutableListOf()).value
     TvLazyColumn {
         items(shipsDataModelList) {
-            ShipItemView(shipsInnerListDataModelList = it.shipsInnerListDataModelList) { selectedShipDataValue ->
+            RowItemList(shipsInnerListDataModelList = it.shipsInnerListDataModelList) { selectedShipDataValue ->
                 Toast.makeText(
                     context,
                     selectedShipDataValue.shipsModel.ship_name.toString(),
@@ -98,94 +111,85 @@ private fun ListOfShips(
     }
 }
 
-@OptIn(ExperimentalTvMaterial3Api::class)
-@Composable
-private fun ShipItemView(
-    shipsInnerListDataModelList: MutableList<ShipsInnerListDataModel>,
-    listener: (ShipsInnerListDataModel) -> Unit
-) {
-    ImmersiveList(
-        modifier = Modifier
-            .height(325.dp)
-            .fillMaxWidth()
-            .padding(5.dp),
-        background = { index, _ ->
-            AnimatedContent(
-                targetState = index,
-                transitionSpec = {
-                    fadeIn(animationSpec = tween(durationMillis = 500)) togetherWith
-                            fadeOut(animationSpec = tween(durationMillis = 500))
-                },
-            ) {
-                RowItemList(shipsInnerListDataModelList = shipsInnerListDataModelList, listener = listener)
-            }
-        },
-    ){}
-}
-
 @Composable
 fun RowItemList(
     shipsInnerListDataModelList: MutableList<ShipsInnerListDataModel>,
     listener: (ShipsInnerListDataModel) -> Unit
 ) {
-    val context = LocalContext.current
     TvLazyRow {
-        items(shipsInnerListDataModelList) { shipsInnerListDataModel ->
-            Card(
-                modifier = Modifier
-                    .height(425.dp)
-                    .width(425.dp)
-                    .padding(15.dp)
-                    .clickable {
+        itemsIndexed(shipsInnerListDataModelList) { index, shipsInnerListDataModel ->
+            ShipItemCard(
+                shipsInnerListDataModel = shipsInnerListDataModel, listener = listener
+            )
+        }
+    }
+}
+
+@Composable
+fun ShipItemCard(
+    shipsInnerListDataModel: ShipsInnerListDataModel,
+    listener: (ShipsInnerListDataModel) -> Unit
+) {
+    var selectedItemIndex by remember { mutableStateOf(false) }
+    val context = LocalContext.current
+    SelectionContainer {
+        Card(
+            border = BorderStroke(if (selectedItemIndex) 3.dp else 0.dp, Color.White),
+            modifier = Modifier
+                .height(325.dp)
+                .width(325.dp)
+                .padding(15.dp)
+                .selectable(
+                    selected = selectedItemIndex,
+                    onClick = {
                         listener(shipsInnerListDataModel)
-                    },
+                        shipsInnerListDataModel.isSelect = !shipsInnerListDataModel.isSelect
+                        selectedItemIndex = shipsInnerListDataModel.isSelect
+                    }),
+        ) {
+
+            Box(
+                contentAlignment = Alignment.BottomCenter,
+                modifier = Modifier
+                    .wrapContentWidth()
+                    .fillMaxHeight()
             ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxSize()
+                AsyncImage(
+                    model = ImageRequest.Builder(context = context).apply {
+                        data(shipsInnerListDataModel.shipsModel.image)
+                        scale(Scale.FIT)
+                        placeholder(getProgressDrawable(context))
+                        error(R.drawable.ic_baseline_image_24)
+                        fallback(R.drawable.ic_baseline_image_24)
+                        memoryCachePolicy(CachePolicy.ENABLED)
+                        dispatcher(Dispatchers.Default)
+                    }.build(),
+                    contentDescription = null,
+                    contentScale = ContentScale.FillBounds,
+                    modifier = Modifier.fillMaxSize()
+                )
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.padding(top = 170.dp)
                 ) {
-                    AsyncImage(
-                        model = ImageRequest.Builder(context = context).apply {
-                            data(shipsInnerListDataModel.shipsModel.image)
-                            scale(Scale.FIT)
-                            placeholder(getProgressDrawable(context))
-                            error(R.drawable.ic_baseline_image_24)
-                            fallback(R.drawable.ic_baseline_image_24)
-                            memoryCachePolicy(CachePolicy.ENABLED)
-                            dispatcher(Dispatchers.Default)
-                        }.build(),
-                        contentDescription = null,
-                        contentScale = ContentScale.FillBounds,
-                        modifier = Modifier
-                            .fillMaxHeight()
-                            .width(width = 280.dp)
+                    Text(
+                        shipsInnerListDataModel.shipsModel.ship_name.toString(),
+                        style = TextStyle(
+                            fontSize = 25.sp,
+                            textAlign = TextAlign.Center,
+                            fontWeight = FontWeight.ExtraBold
+                        ),
+                        color = Color.Green,
                     )
-                    Box(
-                        contentAlignment = Alignment.Center,
-                        modifier = Modifier
-                            .wrapContentWidth()
-                            .fillMaxHeight()
-                            .padding(start = 15.dp),
-                    ) {
-                        Column {
-                            Text(
-                                shipsInnerListDataModel.shipsModel.ship_name.toString(),
-                                style = TextStyle(
-                                    fontSize = 15.sp,
-                                    textAlign = TextAlign.Center
-                                ),
-                                color = Color.White,
-                            )
-                            Text(
-                                shipsInnerListDataModel.shipsModel.ship_type.toString(),
-                                style = TextStyle(
-                                    fontSize = 15.sp,
-                                    textAlign = TextAlign.Center
-                                ),
-                                color = Color.White,
-                            )
-                        }
-                    }
+                    Text(
+                        shipsInnerListDataModel.shipsModel.ship_type.toString(),
+                        style = TextStyle(
+                            fontSize = 25.sp,
+                            textAlign = TextAlign.Center,
+                            fontWeight = FontWeight.ExtraBold
+                        ),
+                        color = Color.Green,
+                    )
                 }
             }
         }

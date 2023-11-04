@@ -3,8 +3,7 @@ package com.nicos.sampleandroidtvapp.ui.ship_details_screen
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Text
@@ -20,7 +19,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
@@ -29,7 +27,6 @@ import coil.request.ImageRequest
 import coil.size.Scale
 import com.nicos.sampleandroidtvapp.R
 import com.nicos.sampleandroidtvapp.room_database.ships.ShipsModel
-import com.nicos.sampleandroidtvapp.ui.generic_compose_views.CustomToolbar
 import com.nicos.sampleandroidtvapp.ui.generic_compose_views.ShowDialog
 import com.nicos.sampleandroidtvapp.ui.generic_compose_views.StartDefaultLoader
 import com.nicos.sampleandroidtvapp.utils.extensions.getProgressDrawable
@@ -47,9 +44,6 @@ internal fun ShipDetailsScreen(
     val scaffoldState: ScaffoldState = rememberScaffoldState()
     Scaffold(
         scaffoldState = scaffoldState,
-        topBar = {
-            CustomToolbar(shipData.ship_name ?: "")
-        },
         content = { paddingValue ->
             val isLoading = shipDetailsViewModel.loading.observeAsState(initial = false).value
             if (isLoading) StartDefaultLoader()
@@ -65,39 +59,38 @@ private fun ShipDetailsView(
     paddingValues: PaddingValues
 ) {
     val context = LocalContext.current
-    Box(contentAlignment = Alignment.TopCenter) {
+    Box(contentAlignment = Alignment.BottomCenter) {
+        AsyncImage(
+            model = ImageRequest.Builder(context = context).apply {
+                data(shipData.image)
+                scale(Scale.FILL)
+                placeholder(getProgressDrawable(context))
+                error(R.drawable.ic_baseline_image_24)
+                fallback(R.drawable.ic_baseline_image_24)
+                memoryCachePolicy(CachePolicy.ENABLED)
+                dispatcher(Dispatchers.Default)
+            }.build(),
+            contentDescription = null,
+            contentScale = ContentScale.FillBounds,
+            modifier = Modifier
+                .fillMaxSize()
+        )
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            AsyncImage(
-                model = ImageRequest.Builder(context = context).apply {
-                    data(shipData.image)
-                    scale(Scale.FIT)
-                    placeholder(getProgressDrawable(context))
-                    error(R.drawable.ic_baseline_image_24)
-                    fallback(R.drawable.ic_baseline_image_24)
-                    memoryCachePolicy(CachePolicy.ENABLED)
-                    dispatcher(Dispatchers.Default)
-                }.build(),
-                contentDescription = null,
-                contentScale = ContentScale.FillBounds,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(height = 300.dp)
-            )
             Text(
                 text = shipData.ship_name ?: "",
                 style = TextStyle(
-                    fontSize = 21.sp,
+                    fontSize = 25.sp,
                     textAlign = TextAlign.Center,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.ExtraBold
                 ),
                 color = Color.White,
             )
             Text(
                 text = shipData.ship_type ?: "",
                 style = TextStyle(
-                    fontSize = 21.sp,
+                    fontSize = 25.sp,
                     textAlign = TextAlign.Center,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.ExtraBold
                 ),
                 color = Color.White,
             )
