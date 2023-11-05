@@ -1,4 +1,4 @@
-# Sample Android TV app
+# Sample Android TV App
 The project is a test project that implements and test Jetpack Compose for Android TV OS app with API request (dynamic list), Hilt and Room Database.
 
 # This Project contains:
