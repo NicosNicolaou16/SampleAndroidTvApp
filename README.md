@@ -14,6 +14,11 @@ Gradle Kotlin DSL <br />
 Repository <br />
 Offline <br />
 
+# References/Tutorials Follow/For Manifest Setup
+https://developer.android.com/training/tv/playback/compose <br />
+https://developer.android.com/jetpack/compose/touch-input/focus/react-to-focus <br />
+https://stackoverflow.com/questions/76281554/android-jetpack-compose-tv-focus-restoring <br />
+
 # Setup in Manifest
 ```xml
 
