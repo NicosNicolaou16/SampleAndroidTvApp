@@ -1,6 +1,5 @@
 package com.nicos.sampleandroidtvapp.ui.ships_screen
 
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.border
 import androidx.compose.foundation.focusable
