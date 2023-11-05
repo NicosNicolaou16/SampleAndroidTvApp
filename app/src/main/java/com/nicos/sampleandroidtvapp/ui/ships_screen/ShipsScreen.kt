@@ -1,8 +1,8 @@
 package com.nicos.sampleandroidtvapp.ui.ships_screen
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
@@ -21,13 +22,12 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.mapSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -49,9 +49,7 @@ import androidx.navigation.NavController
 import androidx.tv.foundation.PivotOffsets
 import androidx.tv.foundation.lazy.list.TvLazyColumn
 import androidx.tv.foundation.lazy.list.TvLazyRow
-import androidx.tv.foundation.lazy.list.items
 import androidx.tv.foundation.lazy.list.itemsIndexed
-import androidx.tv.foundation.lazy.list.rememberTvLazyListState
 import coil.compose.AsyncImage
 import coil.request.CachePolicy
 import coil.request.ImageRequest
@@ -95,16 +93,25 @@ private fun ListOfShips(
     val context = LocalContext.current
     val shipsDataModelList =
         shipsViewModel.shipsDataModelStateFlow.collectAsState(initial = mutableListOf()).value
+    var isSelectIndexes by rememberSaveable { mutableStateOf(Pair(0, 0)) }
+    val focusRequesters = remember { mutableMapOf<Pair<Int, Int>, FocusRequester>() }
     TvLazyColumn {
-        items(shipsDataModelList) {
-            RowItemList(shipsInnerListDataModelList = it.shipsInnerListDataModelList) { selectedShipDataValue ->
-                Toast.makeText(
-                    context,
-                    selectedShipDataValue.shipsModel.ship_name.toString(),
-                    Toast.LENGTH_SHORT
-                ).show()
-                navController.navigate(SHIP_DETAILS_SCREEN + "/${selectedShipDataValue.shipsModel.ship_id}")
-            }
+        itemsIndexed(shipsDataModelList) { indexColumn, it ->
+            RowItemList(
+                shipsInnerListDataModelList = it.shipsInnerListDataModelList,
+                indexColumn = indexColumn,
+                isSelectIndexes = isSelectIndexes,
+                focusRequesters = focusRequesters,
+                selectedItemListener = { selectedShipDataValue ->
+                    Toast.makeText(
+                        context,
+                        selectedShipDataValue.shipsModel.ship_name.toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    navController.navigate(SHIP_DETAILS_SCREEN + "/${selectedShipDataValue.shipsModel.ship_id}")
+                }, focusListener = { column, row ->
+                    isSelectIndexes = Pair(column, row)
+                })
         }
     }
 }
@@ -112,7 +119,11 @@ private fun ListOfShips(
 @Composable
 fun RowItemList(
     shipsInnerListDataModelList: MutableList<ShipsInnerListDataModel>,
-    listener: (ShipsInnerListDataModel) -> Unit
+    indexColumn: Int,
+    isSelectIndexes: Pair<Int, Int>,
+    focusRequesters: MutableMap<Pair<Int, Int>, FocusRequester>,
+    focusListener: (Int, Int) -> Unit,
+    selectedItemListener: (ShipsInnerListDataModel) -> Unit
 ) {
     TvLazyRow(
         pivotOffsets = PivotOffsets(0.5f, 0.5f),
@@ -121,8 +132,12 @@ fun RowItemList(
         itemsIndexed(shipsInnerListDataModelList) { index, shipsInnerListDataModel ->
             ShipItemCard(
                 shipsInnerListDataModel = shipsInnerListDataModel,
-                index = index,
-                listener = listener
+                indexRow = index,
+                indexColumn = indexColumn,
+                isSelectIndexes = isSelectIndexes,
+                focusRequesters = focusRequesters,
+                focusListener = focusListener,
+                selectedItemListener = selectedItemListener
             )
         }
     }
@@ -131,32 +146,41 @@ fun RowItemList(
 @Composable
 fun ShipItemCard(
     shipsInnerListDataModel: ShipsInnerListDataModel,
-    requester: FocusRequester = FocusRequester(),
-    index: Int,
-    listener: (ShipsInnerListDataModel) -> Unit
+    indexColumn: Int,
+    indexRow: Int,
+    isSelectIndexes: Pair<Int, Int>,
+    focusRequesters: MutableMap<Pair<Int, Int>, FocusRequester>,
+    focusListener: (Int, Int) -> Unit,
+    selectedItemListener: (ShipsInnerListDataModel) -> Unit
 ) {
-    var isSelectIndex by rememberSaveable { mutableIntStateOf(0) }
+    val focusRequester = remember { FocusRequester() }
+    focusRequesters[Pair(indexColumn, indexRow)] = focusRequester
     val context = LocalContext.current
     Card(
         modifier = Modifier
             .height(325.dp)
             .width(325.dp)
             .padding(top = 20.dp)
-            .focusRequester(requester)
+            .focusRequester(focusRequester)
             .onFocusChanged {
-                isSelectIndex = if (it.isFocused) index else -1
+                if (it.hasFocus) focusListener(indexColumn, indexRow)
+
             }
             .focusable()
-            .clickable {
-                listener(shipsInnerListDataModel)
+            .selectable(isSelected(isSelectIndexes, indexColumn, indexRow)) {
+                selectedItemListener(shipsInnerListDataModel)
             }
             .border(
-                if (isSelectIndex == index) 7.dp else 0.dp,
-                Color.White,
+                if (isSelected(isSelectIndexes, indexColumn, indexRow)) 7.dp else 0.dp,
+                if (isSelected(
+                        isSelectIndexes,
+                        indexColumn,
+                        indexRow
+                    )
+                ) Color.White else Color.Transparent,
                 shape = RoundedCornerShape(7.dp)
             )
     ) {
-
         Box(
             contentAlignment = Alignment.BottomCenter,
             modifier = Modifier
@@ -202,4 +226,10 @@ fun ShipItemCard(
             }
         }
     }
+    LaunchedEffect(Unit) {
+        focusRequesters[isSelectIndexes]?.requestFocus()
+    }
 }
+
+fun isSelected(isSelectIndex: Pair<Int, Int>, indexColumn: Int, indexRow: Int) =
+    isSelectIndex.first == indexColumn && isSelectIndex.second == indexRow
