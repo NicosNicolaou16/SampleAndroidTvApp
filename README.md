@@ -15,6 +15,9 @@ Gradle Kotlin DSL <br />
 Repository <br />
 Offline <br />
 
+## Similar project with (Kotlin Language)
+https://github.com/NicosNicolaou16/SampleFlutterTVApp <br />
+
 # References/Tutorials Follow/For Manifest Setup
 https://developer.android.com/training/tv/playback/compose <br />
 https://developer.android.com/jetpack/compose/touch-input/focus/react-to-focus <br />
