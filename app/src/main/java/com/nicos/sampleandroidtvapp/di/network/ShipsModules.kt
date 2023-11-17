@@ -1,6 +1,6 @@
-package com.nicos.sampleandroidtvapp.utils.remote.network
+package com.nicos.sampleandroidtvapp.di.network
 
-import com.nicos.sampleandroidtvapp.utils.remote.ship_service.ShipService
+import com.nicos.sampleandroidtvapp.domain.remote.ship_service.ShipService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

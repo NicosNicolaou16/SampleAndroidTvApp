@@ -1,4 +1,4 @@
-package com.nicos.sampleandroidtvapp.ui.launcher_screen
+package com.nicos.sampleandroidtvapp.compose.launcher_screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

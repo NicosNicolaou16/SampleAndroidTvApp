@@ -1,8 +1,8 @@
-package com.nicos.sampleandroidtvapp.utils.remote.repositories.ships_repository
+package com.nicos.sampleandroidtvapp.domain.remote.repositories.ships_repository
 
 import com.nicos.sampleandroidtvapp.room_database.init_database.MyRoomDatabase
 import com.nicos.sampleandroidtvapp.room_database.ships.ShipsModel
-import com.nicos.sampleandroidtvapp.utils.remote.ship_service.ShipService
+import com.nicos.sampleandroidtvapp.domain.remote.ship_service.ShipService
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 

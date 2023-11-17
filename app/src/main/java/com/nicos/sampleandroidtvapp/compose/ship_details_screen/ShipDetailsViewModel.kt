@@ -1,10 +1,10 @@
-package com.nicos.sampleandroidtvapp.ui.ship_details_screen
+package com.nicos.sampleandroidtvapp.compose.ship_details_screen
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nicos.sampleandroidtvapp.room_database.ships.ShipsModel
-import com.nicos.sampleandroidtvapp.utils.remote.repositories.ship_details_repository.ShipDetailsRepository
+import com.nicos.sampleandroidtvapp.domain.remote.repositories.ship_details_repository.ShipDetailsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

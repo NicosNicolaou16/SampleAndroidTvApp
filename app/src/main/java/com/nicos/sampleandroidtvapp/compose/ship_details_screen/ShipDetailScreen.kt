@@ -1,4 +1,4 @@
-package com.nicos.sampleandroidtvapp.ui.ship_details_screen
+package com.nicos.sampleandroidtvapp.compose.ship_details_screen
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -29,8 +29,8 @@ import coil.request.ImageRequest
 import coil.size.Scale
 import com.nicos.sampleandroidtvapp.R
 import com.nicos.sampleandroidtvapp.room_database.ships.ShipsModel
-import com.nicos.sampleandroidtvapp.ui.generic_compose_views.ShowDialog
-import com.nicos.sampleandroidtvapp.ui.generic_compose_views.StartDefaultLoader
+import com.nicos.sampleandroidtvapp.compose.generic_compose_views.ShowDialog
+import com.nicos.sampleandroidtvapp.compose.generic_compose_views.StartDefaultLoader
 import com.nicos.sampleandroidtvapp.utils.extensions.getProgressDrawable
 import kotlinx.coroutines.Dispatchers
 

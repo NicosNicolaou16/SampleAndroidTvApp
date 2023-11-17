@@ -1,4 +1,4 @@
-package com.nicos.sampleandroidtvapp.ui.generic_compose_views
+package com.nicos.sampleandroidtvapp.compose.generic_compose_views
 
 import androidx.annotation.MainThread
 import androidx.annotation.UiThread

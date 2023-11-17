@@ -1,4 +1,4 @@
-package com.nicos.sampleandroidtvapp.ui.navigation
+package com.nicos.sampleandroidtvapp.compose.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
@@ -6,10 +6,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.nicos.sampleandroidtvapp.ui.launcher_screen.LauncherScreen
-import com.nicos.sampleandroidtvapp.ui.ship_details_screen.SHIP_ID_KEY
-import com.nicos.sampleandroidtvapp.ui.ship_details_screen.ShipDetailsScreen
-import com.nicos.sampleandroidtvapp.ui.ships_screen.ShipsScreen
+import com.nicos.sampleandroidtvapp.compose.launcher_screen.LauncherScreen
+import com.nicos.sampleandroidtvapp.compose.ship_details_screen.SHIP_ID_KEY
+import com.nicos.sampleandroidtvapp.compose.ship_details_screen.ShipDetailsScreen
+import com.nicos.sampleandroidtvapp.compose.ships_screen.ShipsScreen
 import com.nicos.sampleandroidtvapp.utils.screen_routes.Screens
 import com.nicos.sampleandroidtvapp.utils.screen_routes.Screens.SHIP_DETAILS_SCREEN
 

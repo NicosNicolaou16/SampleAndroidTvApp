@@ -1,4 +1,4 @@
-package com.nicos.sampleandroidtvapp.ui.ships_screen
+package com.nicos.sampleandroidtvapp.compose.ships_screen
 
 import android.widget.Toast
 import androidx.compose.foundation.border
@@ -55,9 +55,9 @@ import coil.request.ImageRequest
 import coil.size.Scale
 import com.nicos.sampleandroidtvapp.R
 import com.nicos.sampleandroidtvapp.data.ships_inner_list_data_model.ShipsInnerListDataModel
-import com.nicos.sampleandroidtvapp.ui.generic_compose_views.CustomToolbar
-import com.nicos.sampleandroidtvapp.ui.generic_compose_views.ShowDialog
-import com.nicos.sampleandroidtvapp.ui.generic_compose_views.StartDefaultLoader
+import com.nicos.sampleandroidtvapp.compose.generic_compose_views.CustomToolbar
+import com.nicos.sampleandroidtvapp.compose.generic_compose_views.ShowDialog
+import com.nicos.sampleandroidtvapp.compose.generic_compose_views.StartDefaultLoader
 import com.nicos.sampleandroidtvapp.utils.extensions.getProgressDrawable
 import com.nicos.sampleandroidtvapp.utils.screen_routes.Screens.SHIP_DETAILS_SCREEN
 import kotlinx.coroutines.Dispatchers

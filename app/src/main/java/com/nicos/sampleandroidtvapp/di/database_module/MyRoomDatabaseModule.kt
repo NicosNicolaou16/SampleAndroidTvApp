@@ -1,7 +1,8 @@
-package com.nicos.sampleandroidtvapp.room_database.init_database
+package com.nicos.sampleandroidtvapp.di.database_module
 
 import android.content.Context
 import androidx.room.Room
+import com.nicos.sampleandroidtvapp.room_database.init_database.MyRoomDatabase
 import com.nicos.sampleandroidtvapp.room_database.init_database.MyRoomDatabase.Companion.DB_NAME
 import dagger.Module
 import dagger.Provides
