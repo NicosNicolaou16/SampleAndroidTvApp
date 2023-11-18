@@ -15,7 +15,7 @@ Gradle Kotlin DSL <br />
 Repository <br />
 Offline <br />
 
-## Similar project with (Kotlin Language)
+## Similar project with (Dart Language)
 https://github.com/NicosNicolaou16/SampleFlutterTVApp <br />
 
 # References/Tutorials Follow/For Manifest Setup
