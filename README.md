@@ -50,6 +50,9 @@ https://stackoverflow.com/questions/76281554/android-jetpack-compose-tv-focus-re
 </manifest>
 ```
 
+## Check my article
+https://medium.com/@nicosnicolaou/android-tv-application-jetpack-compose-and-flutter-f4decfa765c6
+
 # Feeds/Urls/End Point (parsing some data from response)
 ## (Links References for Ends Points)
 https://github.com/r-spacex/SpaceX-API (GitHub) <br />
