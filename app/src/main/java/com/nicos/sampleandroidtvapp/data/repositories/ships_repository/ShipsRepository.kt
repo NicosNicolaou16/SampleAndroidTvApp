@@ -1,4 +1,4 @@
-package com.nicos.sampleandroidtvapp.domain.remote.repositories.ships_repository
+package com.nicos.sampleandroidtvapp.data.repositories.ships_repository
 
 import com.nicos.sampleandroidtvapp.room_database.init_database.MyRoomDatabase
 import com.nicos.sampleandroidtvapp.room_database.ships.ShipsModel

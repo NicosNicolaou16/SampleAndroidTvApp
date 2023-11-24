@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nicos.sampleandroidtvapp.data.ships_data_model.ShipsDataModel
-import com.nicos.sampleandroidtvapp.domain.remote.repositories.ships_repository.ShipsRepository
+import com.nicos.sampleandroidtvapp.data.repositories.ships_repository.ShipsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
