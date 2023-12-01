@@ -53,7 +53,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.4"
+        kotlinCompilerExtensionVersion = "1.5.5"
     }
     packaging {
         resources {
@@ -64,10 +64,10 @@ android {
 
 val coreKtxVersion by extra("1.12.0")
 val lifeCycleAndLiveDataCompilerAndViewModelKTXVersion by extra("2.6.2")
-val activityVersion by extra("1.8.0")
+val activityVersion by extra("1.8.1")
 val retrofitVersion by extra("2.9.0")
 val okHttpVersion by extra("4.12.0")
-val roomVersion by extra("2.6.0")
+val roomVersion by extra("2.6.1")
 val daggerVersion by extra("2.15")
 val coroutineVersion by extra("1.7.3")
 val hiltVersion by extra("2.48.1")
