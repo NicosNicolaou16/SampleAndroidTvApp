@@ -27,7 +27,7 @@ class ShipsViewModel @Inject constructor() : ViewModel() {
     }
 
     @Inject
-    protected lateinit var shipsRepository: ShipsRepository
+    internal lateinit var shipsRepository: ShipsRepository
 
     private fun requestForShipsData() = viewModelScope.launch(Dispatchers.Main) {
         loading.value = true

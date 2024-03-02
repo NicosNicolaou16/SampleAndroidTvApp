@@ -23,7 +23,7 @@ class ShipDetailsViewModel @Inject constructor() :
     internal val error = MutableLiveData<String>()
 
     @Inject
-    protected lateinit var shipDetailsRepository: ShipDetailsRepository
+    internal lateinit var shipDetailsRepository: ShipDetailsRepository
 
     fun queryShipById(id: String) = viewModelScope.launch(Dispatchers.Main) {
         flow {
