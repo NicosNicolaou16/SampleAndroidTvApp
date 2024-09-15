@@ -13,12 +13,15 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Scaffold
-import androidx.compose.material.ScaffoldState
-import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Card
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -45,29 +48,27 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.tv.foundation.PivotOffsets
-import androidx.tv.foundation.lazy.list.TvLazyColumn
-import androidx.tv.foundation.lazy.list.TvLazyRow
-import androidx.tv.foundation.lazy.list.itemsIndexed
 import coil.compose.AsyncImage
 import coil.request.CachePolicy
 import coil.request.ImageRequest
 import coil.size.Scale
 import com.nicos.sampleandroidtvapp.R
-import com.nicos.sampleandroidtvapp.data.ships_inner_list_data_model.ShipsInnerListDataModel
 import com.nicos.sampleandroidtvapp.compose.generic_compose_views.CustomToolbar
 import com.nicos.sampleandroidtvapp.compose.generic_compose_views.ShowDialog
 import com.nicos.sampleandroidtvapp.compose.generic_compose_views.StartDefaultLoader
+import com.nicos.sampleandroidtvapp.data.ships_inner_list_data_model.ShipsInnerListDataModel
 import com.nicos.sampleandroidtvapp.utils.extensions.getProgressDrawable
 import com.nicos.sampleandroidtvapp.utils.screen_routes.Screens.SHIP_DETAILS_SCREEN
 import kotlinx.coroutines.Dispatchers
 
 @Composable
 internal fun ShipsScreen(navController: NavController) {
-    val scaffoldState: ScaffoldState = rememberScaffoldState()
+    val snackBarHostState = remember { SnackbarHostState() }
     Scaffold(
-        scaffoldState = scaffoldState,
-        backgroundColor = Color.Black,
+        snackbarHost = {
+            SnackbarHost(hostState = snackBarHostState)
+        },
+        contentColor = Color.Black,
         topBar = {
             CustomToolbar(R.string.list_of_ships)
         },
@@ -94,7 +95,7 @@ private fun ListOfShips(
         shipsViewModel.shipsDataModelStateFlow.collectAsState(initial = mutableListOf()).value
     var isSelectIndexes by rememberSaveable { mutableStateOf(Pair(0, 0)) }
     val focusRequesters = remember { mutableMapOf<Pair<Int, Int>, FocusRequester>() }
-    TvLazyColumn {
+    LazyColumn(modifier = Modifier.padding(paddingValues)) {
         itemsIndexed(shipsDataModelList) { indexColumn, it ->
             RowItemList(
                 shipsInnerListDataModelList = it.shipsInnerListDataModelList,
@@ -124,8 +125,7 @@ fun RowItemList(
     focusListener: (Int, Int) -> Unit,
     selectedItemListener: (ShipsInnerListDataModel) -> Unit
 ) {
-    TvLazyRow(
-        pivotOffsets = PivotOffsets(0.5f, 0.5f),
+    LazyRow(
         horizontalArrangement = Arrangement.spacedBy(20.dp)
     ) {
         itemsIndexed(shipsInnerListDataModelList) { index, shipsInnerListDataModel ->
