@@ -58,7 +58,7 @@ https://medium.com/@nicosnicolaou/android-tv-application-jetpack-compose-and-flu
 https://github.com/r-spacex/SpaceX-API (GitHub) <br />
 https://docs.spacexdata.com/?version=latest (Postman) <br />
 
-Target SDK version: 34 <br />
-Minimum SDK version: 27 <br />
-Kotlin version: 2.0.0 <br />
-Gradle version: 8.4.1 <br />
+Target SDK version: 35 <br />
+Minimum SDK version: 28 <br />
+Kotlin version: 2.0.21 <br />
+Gradle version: 8.7.2 <br />
