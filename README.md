@@ -69,7 +69,7 @@ also obfuscating the remaining code to improve security. <br />
 > Check my article for the setup :point_right: [Android TV Application (Setup for Jetpack Compose and Flutter)- Medium](https://medium.com/@nicosnicolaou/android-tv-application-jetpack-compose-and-flutter-f4decfa765c6) :point_left: <br />
 
 > [!IMPORTANT]
-> Similar project with (Kotlin Language) :point_right: [SampleFlutterTVApp](https://github.com/NicosNicolaou16/SampleFlutterTVApp) :point_left: <br />
+> Similar project with (Dart Language) :point_right: [SampleFlutterTVApp](https://github.com/NicosNicolaou16/SampleFlutterTVApp) :point_left: <br />
 
 #Versioning
 
