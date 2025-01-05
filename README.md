@@ -8,6 +8,8 @@ Database for local data storage.
 
 # The Project Contain the following technologies
 
+[Android TV OS]()https://developer.android.com/tv is a version of Android designed for smart TVs,
+providing an optimized interface for streaming and apps. <br />
 The programming language is the [Kotlin](https://kotlinlang.org/docs/getting-started.html), it is a
 modern, JVM-based programming language that is concise, safe, and interoperable with Java. <br />
 [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) is used for asynchronous
@@ -34,7 +36,6 @@ compared to KAPT. [Repository](https://github.com/google/ksp) <br />
 [R8](https://developer.android.com/build/shrink-code) enabled, is a code shrinker and obfuscator for
 Android that optimizes and reduces the size of APKs by removing unused code and resources, while
 also obfuscating the remaining code to improve security. <br />
-For Android TV OS support <br />
 
 ## Similar project with (Dart Language)
 
