@@ -15,19 +15,27 @@ tasks. <br />
 [Kotlin KTX](https://developer.android.com/kotlin/ktx) is a collection of Kotlin extensions that
 offer more concise and expressive code for working with Android APIs and libraries.
 The UI is build using [Jetpack Compose](https://developer.android.com/develop/ui/compose). <br />
+[Retrofit](https://square.github.io/retrofit/) is responsible for making requests and retrieving
+data from the remote server. ([Repository](https://github.com/square/retrofit)) <br />
+[Hilt Dependencies Injection](https://developer.android.com/training/dependency-injection/hilt-android)
+is an Android library that simplifies dependency injection by using annotations to automatically
+manage and provide dependencies across components, built on top of
+Dagger. ([Documentation](https://dagger.dev/hilt/)) <br />
+[Room Database](https://developer.android.com/training/data-storage/room) is responsible for saving
+the retrieved data from the remote server, querying data from the local database, and supporting
+offline functionality.  <br />
+[MVVM](https://developer.android.com/topic/architecture#recommended-app-arch) with repository is an
+architecture where the Repository manages data sources (e.g., network, database), the ViewModel
+processes the data for the UI, and the View displays the UI, ensuring a clear separation of
+concerns. <br />
 
 For Android TV OS support <br />
 Compose <br />
-Hilt <br />
-Room Database <br />
-Coroutines <br />
-Kotlin ktx <br />
 MVVM <br />
 Support kapt and ksp (ksp only setup for Room Database) <br />
 minifyEnabled, shrinkResources, R8 are enabled <br />
 Gradle Kotlin DSL <br />
 Repository <br />
-Offline <br />
 
 ## Similar project with (Dart Language)
 
