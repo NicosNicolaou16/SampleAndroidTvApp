@@ -1,9 +1,17 @@
 # Sample Android TV App
-The project is a test project that implements and test Jetpack Compose for Android TV OS app with API request (dynamic list), Hilt and Room Database.
+
+The project is a test implementation that uses Jetpack Compose for an Android TV OS app. It includes
+API requests to fetch a dynamic list, integrates Hilt for Dependency Injection, and utilizes Room
+Database for local data storage.
 
 <a title="simulator_image"><img src="Screenshot_20231119_124940.png" height="300" width="500"></a>
 
-# This Project contains:
+# The Project Contain the following technologies
+
+The programming language is the [Kotlin](https://kotlinlang.org/docs/getting-started.html), it is a
+modern, JVM-based programming language that is concise, safe, and interoperable with Java. <br />
+[Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) is used for asynchronous
+tasks. <br />
 For Android TV OS support <br />
 Compose <br />
 Hilt <br />
@@ -18,14 +26,17 @@ Repository <br />
 Offline <br />
 
 ## Similar project with (Dart Language)
+
 https://github.com/NicosNicolaou16/SampleFlutterTVApp <br />
 
 # References/Tutorials Follow/For Manifest Setup
+
 https://developer.android.com/training/tv/playback/compose <br />
 https://developer.android.com/jetpack/compose/touch-input/focus/react-to-focus <br />
 https://stackoverflow.com/questions/76281554/android-jetpack-compose-tv-focus-restoring <br />
 
 # Setup in Manifest
+
 ```xml
 
 <manifest>
@@ -51,10 +62,13 @@ https://stackoverflow.com/questions/76281554/android-jetpack-compose-tv-focus-re
 ```
 
 ## Check my article
+
 https://medium.com/@nicosnicolaou/android-tv-application-jetpack-compose-and-flutter-f4decfa765c6
 
 # Feeds/Urls/End Point (parsing some data from response)
+
 ## (Links References for Ends Points)
+
 https://github.com/r-spacex/SpaceX-API (GitHub) <br />
 https://docs.spacexdata.com/?version=latest (Postman) <br />
 
