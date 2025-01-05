@@ -79,14 +79,16 @@ https://stackoverflow.com/questions/76281554/android-jetpack-compose-tv-focus-re
 > [!IMPORTANT]
 > Similar project with (Kotlin Language) :point_right: [SampleFlutterTVApp](https://github.com/NicosNicolaou16/SampleFlutterTVApp) :point_left: <br />
 
+#Versioning
+
+Target SDK version: 35 <br />
+Minimum SDK version: 28 <br />
+Kotlin version: 2.0.21 <br />
+Gradle version: 8.7.2 <br /
+
 # Feeds/Urls/End Point (parsing some data from response)
 
 ## (Links References for Ends Points)
 
 https://github.com/r-spacex/SpaceX-API (GitHub) <br />
-https://docs.spacexdata.com/?version=latest (Postman) <br />
-
-Target SDK version: 35 <br />
-Minimum SDK version: 28 <br />
-Kotlin version: 2.0.21 <br />
-Gradle version: 8.7.2 <br />
+https://docs.spacexdata.com/?version=latest (Postman) <br />>
