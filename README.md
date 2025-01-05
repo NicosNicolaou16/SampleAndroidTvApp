@@ -83,7 +83,7 @@ Gradle version: 8.7.3 <br /
 ## (Links References for Ends Points)
 
 https://github.com/r-spacex/SpaceX-API (GitHub) <br />
-https://docs.spacexdata.com/?version=latest (Postman) <br />>
+https://docs.spacexdata.com/?version=latest (Postman) <br />
 
 # References/Tutorials Follow/For Manifest Setup
 
