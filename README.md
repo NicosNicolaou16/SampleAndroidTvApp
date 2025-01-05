@@ -73,9 +73,11 @@ https://stackoverflow.com/questions/76281554/android-jetpack-compose-tv-focus-re
 </manifest>
 ```
 
-## Check my article
+> [!IMPORTANT]  
+> Check my article for the setup :point_right: [Android TV Application (Setup for Jetpack Compose and Flutter)- Medium](https://medium.com/@nicosnicolaou/android-tv-application-jetpack-compose-and-flutter-f4decfa765c6) :point_left: <br />
 
-https://medium.com/@nicosnicolaou/android-tv-application-jetpack-compose-and-flutter-f4decfa765c6
+> [!IMPORTANT]
+> Similar project with (Kotlin Language) :point_right: [SampleFlutterTVApp](https://github.com/NicosNicolaou16/SampleFlutterTVApp) :point_left: <br />
 
 # Feeds/Urls/End Point (parsing some data from response)
 
