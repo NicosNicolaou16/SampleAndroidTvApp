@@ -37,17 +37,9 @@ compared to KAPT. [Repository](https://github.com/google/ksp) <br />
 Android that optimizes and reduces the size of APKs by removing unused code and resources, while
 also obfuscating the remaining code to improve security. <br />
 
-## Similar project with (Dart Language)
+# Setup
 
-https://github.com/NicosNicolaou16/SampleFlutterTVApp <br />
-
-# References/Tutorials Follow/For Manifest Setup
-
-https://developer.android.com/training/tv/playback/compose <br />
-https://developer.android.com/jetpack/compose/touch-input/focus/react-to-focus <br />
-https://stackoverflow.com/questions/76281554/android-jetpack-compose-tv-focus-restoring <br />
-
-# Setup in Manifest
+## Setup in Manifest
 
 ```xml
 
@@ -92,3 +84,9 @@ Gradle version: 8.7.2 <br /
 
 https://github.com/r-spacex/SpaceX-API (GitHub) <br />
 https://docs.spacexdata.com/?version=latest (Postman) <br />>
+
+# References/Tutorials Follow/For Manifest Setup
+
+https://developer.android.com/training/tv/playback/compose <br />
+https://developer.android.com/jetpack/compose/touch-input/focus/react-to-focus <br />
+https://stackoverflow.com/questions/76281554/android-jetpack-compose-tv-focus-restoring <br />
