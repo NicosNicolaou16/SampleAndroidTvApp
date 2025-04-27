@@ -63,12 +63,12 @@ android {
     }
 }
 
-val coreKtxVersion by extra("1.15.0")
+val coreKtxVersion by extra("1.16.0")
 val lifeCycleAndLiveDataCompilerAndViewModelKTXVersion by extra("2.8.7")
-val activityVersion by extra("1.9.3")
+val activityVersion by extra("1.10.1")
 val retrofitVersion by extra("2.11.0")
 val okHttpVersion by extra("4.12.0")
-val roomVersion by extra("2.6.1")
+val roomVersion by extra("2.7.1")
 val daggerVersion by extra("2.15")
 val coroutineVersion by extra("1.10.1")
 val hiltVersion by extra("2.54")
@@ -78,10 +78,10 @@ val coilVersion by extra("2.7.0")
 val swipeRefreshLayoutVersion by extra("1.1.0")
 val tvComposeFoundationVersion by extra("1.0.0-alpha11")
 val tvComposeVersion by extra("1.0.0")
-val composeNavigationVersion by extra("2.8.5")
+val composeNavigationVersion by extra("2.8.9")
 val composeHiltNavigationVersion by extra("1.2.0")
-val composeVersion by extra("1.7.6")
-val composeMaterialVersion by extra("1.7.6")
+val composeVersion by extra("1.8.0")
+val composeMaterialVersion by extra("1.8.0")
 
 dependencies {
 
@@ -92,7 +92,7 @@ dependencies {
     //noinspection LifecycleAnnotationProcessorWithJava8
     kapt("androidx.lifecycle:lifecycle-compiler:$lifeCycleAndLiveDataCompilerAndViewModelKTXVersion")
     implementation("androidx.activity:activity-compose:$activityVersion")
-    implementation(platform("androidx.compose:compose-bom:2024.12.01"))
+    implementation(platform("androidx.compose:compose-bom:2025.04.01"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
@@ -130,7 +130,7 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2024.12.01"))
+    androidTestImplementation(platform("androidx.compose:compose-bom:2025.04.01"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
