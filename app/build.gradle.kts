@@ -4,13 +4,13 @@ plugins {
     id("com.google.devtools.ksp")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
-    id("org.jetbrains.kotlin.plugin.compose") version "2.0.21"
+    id("org.jetbrains.kotlin.plugin.compose") version "2.1.20"
 }
 
 android {
     namespace = "com.nicos.sampleandroidtvapp"
     compileSdk = 35
-    buildToolsVersion = "35.0.0"
+    buildToolsVersion = "35.0.1"
 
     defaultConfig {
         applicationId = "com.nicos.sampleandroidtvapp"
@@ -70,13 +70,13 @@ val retrofitVersion by extra("2.11.0")
 val okHttpVersion by extra("4.12.0")
 val roomVersion by extra("2.7.1")
 val daggerVersion by extra("2.15")
-val coroutineVersion by extra("1.10.1")
-val hiltVersion by extra("2.54")
+val coroutineVersion by extra("1.10.2")
+val hiltVersion by extra("2.56.2")
 val hiltCompilerVersion by extra("1.2.0")
 val materialDesignVersion by extra("1.12.0")
 val coilVersion by extra("2.7.0")
 val swipeRefreshLayoutVersion by extra("1.1.0")
-val tvComposeFoundationVersion by extra("1.0.0-alpha11")
+val tvComposeFoundationVersion by extra("1.0.0-alpha12")
 val tvComposeVersion by extra("1.0.0")
 val composeNavigationVersion by extra("2.8.9")
 val composeHiltNavigationVersion by extra("1.2.0")
