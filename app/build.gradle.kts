@@ -52,6 +52,7 @@ android {
     kotlin {
         compilerOptions {
             jvmTarget = JvmTarget.fromTarget("17")
+            freeCompilerArgs = listOf("-Xannotation-default-target=param-property")
         }
     }
     buildFeatures {
@@ -68,23 +69,23 @@ android {
 }
 
 val coreKtxVersion by extra("1.16.0")
-val lifeCycleAndLiveDataCompilerAndViewModelKTXVersion by extra("2.8.7")
+val lifeCycleAndLiveDataCompilerAndViewModelKTXVersion by extra("2.9.2")
 val activityVersion by extra("1.10.1")
-val retrofitVersion by extra("2.11.0")
-val okHttpVersion by extra("4.12.0")
-val roomVersion by extra("2.7.1")
+val retrofitVersion by extra("3.0.0")
+val okHttpVersion by extra("5.1.0")
+val roomVersion by extra("2.7.2")
 val coroutineVersion by extra("1.10.2")
-val hiltVersion by extra("2.56.2")
+val hiltVersion by extra("2.57")
 val hiltCompilerVersion by extra("1.2.0")
 val materialDesignVersion by extra("1.12.0")
 val coilVersion by extra("2.7.0")
 val swipeRefreshLayoutVersion by extra("1.1.0")
 val tvComposeFoundationVersion by extra("1.0.0-alpha12")
-val tvComposeVersion by extra("1.0.0")
-val composeNavigationVersion by extra("2.8.9")
+val tvComposeVersion by extra("1.0.1")
+val composeNavigationVersion by extra("2.9.3")
 val composeHiltNavigationVersion by extra("1.2.0")
-val composeVersion by extra("1.8.0")
-val composeMaterialVersion by extra("1.8.0")
+val composeVersion by extra("1.8.3")
+val composeMaterialVersion by extra("1.8.3")
 
 dependencies {
 
@@ -95,7 +96,7 @@ dependencies {
     //noinspection LifecycleAnnotationProcessorWithJava8
     kapt("androidx.lifecycle:lifecycle-compiler:$lifeCycleAndLiveDataCompilerAndViewModelKTXVersion")
     implementation("androidx.activity:activity-compose:$activityVersion")
-    implementation(platform("androidx.compose:compose-bom:2025.04.01"))
+    implementation(platform("androidx.compose:compose-bom:2025.07.00"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
@@ -131,9 +132,9 @@ dependencies {
     ksp("androidx.hilt:hilt-compiler:$hiltCompilerVersion")
     //Testing
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.2.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2025.04.01"))
+    androidTestImplementation("androidx.test.ext:junit:1.3.0")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.7.0")
+    androidTestImplementation(platform("androidx.compose:compose-bom:2025.07.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
