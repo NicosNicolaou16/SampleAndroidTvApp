@@ -73,10 +73,10 @@ also obfuscating the remaining code to improve security. <br />
 
 #Versioning
 
-Target SDK version: 35 <br />
-Minimum SDK version: 28 <br />
-Kotlin version: 2.1.20 <br />
-Gradle version: 8.9.2 <br />
+Target SDK version: 36 <br />
+Minimum SDK version: 29 <br />
+Kotlin version: 2.2.0 <br />
+Gradle version: 8.12.0 <br />
 
 # Feeds/Urls/End Point (parsing some data from response)
 
