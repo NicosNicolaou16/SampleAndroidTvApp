@@ -67,7 +67,7 @@ android {
 }
 
 val coreKtxVersion by extra("1.16.0")
-val lifeCycleAndLiveDataCompilerAndViewModelKTXVersion by extra("2.9.2")
+val lifeCycleAndLiveDataCompilerAndViewModelKTXVersion by extra("2.10.0")
 val activityVersion by extra("1.13.0")
 val retrofitVersion by extra("3.0.0")
 val okHttpVersion by extra("5.1.0")
