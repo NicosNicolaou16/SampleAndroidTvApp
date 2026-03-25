@@ -81,7 +81,7 @@ val swipeRefreshLayoutVersion by extra("1.2.0")
 val tvComposeFoundationVersion by extra("1.0.0-alpha12")
 val tvComposeVersion by extra("1.0.1")
 val composeNavigationVersion by extra("2.9.3")
-val composeHiltNavigationVersion by extra("1.2.0")
+val composeHiltNavigationVersion by extra("1.3.0")
 val composeVersion by extra("1.8.3")
 val composeMaterialVersion by extra("1.8.3")
 
