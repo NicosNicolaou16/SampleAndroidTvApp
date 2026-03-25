@@ -86,6 +86,7 @@ This project parses data from the following endpoints:
 ## ⭐ Stargazers
 
 If you find this project useful, please give it a star!
+[View Stargazers on GitHub](https://github.com/NicosNicolaou16/SampleAndroidTvApp/stargazers)
 
 ## 🙏 Support & Contributions
 
